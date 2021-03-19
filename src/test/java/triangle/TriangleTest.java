@@ -35,4 +35,33 @@ class TriangleTest {
         assertThat(test3.isIsosceles()).isTrue();
 
     }
+
+    @Test
+    void isNotScaleneTest() {
+
+        Triangle test4 = new Triangle(new Point[]{new Point(1, 1),
+                new Point(1, 1),
+                new Point(1, 2)});
+
+        assertThat(test4.isScalene()).isFalse();
+
+    }
+
+    @Test
+    void isNotEquilateral(){
+
+        Triangle test5 = new Triangle(1, 1, 3);
+
+        assertThat(test5.isEquilateral()).isFalse();
+
+    }
+
+    @Test
+    void isNotIsoceles() {
+
+        Triangle test6 = new Triangle(1, 3, 2);
+
+        assertThat(test6.isIsosceles()).isFalse();
+
+    }
 }
