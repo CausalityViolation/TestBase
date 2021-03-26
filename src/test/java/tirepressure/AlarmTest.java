@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 class AlarmTest {
 
     @Test
-    void alarmIsOnWhenOutsideRangeTest() {
+    void alarmIsOnWhenAboveRangeTest() {
 
         Sensor sensorTest = mock(Sensor.class);
         when(sensorTest.popNextPressurePsiValue()).thenReturn(22.0);
@@ -25,7 +25,7 @@ class AlarmTest {
     }
 
     @Test
-    void alarmIsOffWhenWithingRangeTest(){
+    void alarmIsOffWhenWithingRangeTest() {
 
         Sensor sensorTest = mock(Sensor.class);
         when(sensorTest.popNextPressurePsiValue()).thenReturn(19.0);
@@ -37,4 +37,16 @@ class AlarmTest {
 
     }
 
+    @Test
+    void alarmIsOnBelowAboveRangeTest() {
+
+        Sensor sensorTest = mock(Sensor.class);
+        when(sensorTest.popNextPressurePsiValue()).thenReturn(1.0);
+
+        Alarm alarmTest = new Alarm(sensorTest, new Threshold(17, 21));
+
+        alarmTest.check();
+        assertThat(alarmTest.alarmOn).isTrue();
+
+    }
 }
